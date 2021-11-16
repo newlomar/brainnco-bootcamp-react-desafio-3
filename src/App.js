@@ -1,8 +1,16 @@
 import './App.css';
 import Form from './Form';
+import Table from './Table';
+
 
 function App() {
-  return <Form />
+  return (
+    <>
+      <Form />
+      <Table />
+    </>
+  )
+    
 }
 
 export default App;
