@@ -4,15 +4,18 @@ const url = 'http://localhost:3333/cars';
 
 function Table() {
   const [cars, setCars] = useState([]);
+  
   useEffect(() => {
     async function getCars() {
       const response = await fetch(url)
       const json = await response.json()
-      console.log(json)
+      setCars(json)
+      // clean
     }
-
     getCars()
-  })
+  }, [])
+
+  console.log(cars)
 
   return (
     <table>
@@ -25,7 +28,21 @@ function Table() {
           <th>Cor do Carro</th>
         </tr>
       </thead>
-      { }
+      <tbody>
+        {
+          cars.map((item) => {
+            return(
+              <tr>
+                <td><img src={`${item.image}`} alt="car" /></td>
+                <td>{item.brandModel}</td>
+                <td>{item.year}</td>
+                <td>{item.plate}</td>
+                <td>{item.color}</td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
     </table>
   )
 }
