@@ -15,8 +15,6 @@ function Table() {
     getCars()
   }, [])
 
-  console.log(cars)
-
   return (
     <table>
       <thead>
@@ -30,17 +28,19 @@ function Table() {
       </thead>
       <tbody>
         {
-          cars.map((item) => {
-            return(
-              <tr>
-                <td><img src={`${item.image}`} alt="car" /></td>
-                <td>{item.brandModel}</td>
-                <td>{item.year}</td>
-                <td>{item.plate}</td>
-                <td>{item.color}</td>
-              </tr>
-            );
-          })
+          cars.length > 0 ? 
+            cars.map((item) => {
+              return(
+                <tr>
+                  <td><img src={`${item.image}`} alt="car" /></td>
+                  <td>{item.brandModel}</td>
+                  <td>{item.year}</td>
+                  <td>{item.plate}</td>
+                  <td>{item.color}</td>
+                </tr>
+              );
+            }) :
+            'Nenhum carro encontrado.'
         }
       </tbody>
     </table>
