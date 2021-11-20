@@ -40,7 +40,9 @@ function Table() {
                 </tr>
               );
             }) :
-            'Nenhum carro encontrado.'
+            <tr>
+              <td>'Nenhum carro encontrado.'</td>
+            </tr>
         }
       </tbody>
     </table>
