@@ -10,10 +10,12 @@ function Table() {
       const response = await fetch(url)
       const json = await response.json()
       setCars(json)
+      
       // clean
     }
-    getCars()
-  }, [])
+    
+    getCars();
+  }, []);
 
   return (
     <table>
