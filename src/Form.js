@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
-function Form() {
-
-  const url = 'http://localhost:3333/cars'
+function Form({ setCars }) {
 
   const [inputs, setInputs] = useState({
     image_url: '',
@@ -12,15 +10,7 @@ function Form() {
     cor: ''
   });
 
-  function handleChange(e) {
-    const {name, value} = e.target;
-    setInputs((prevState) => (
-      {
-        ...prevState,
-        [name]: value
-      }
-    ));
-  }
+  const url = 'http://localhost:3333/cars';
 
   function handleSubmit(e) {
     const body = {
@@ -30,8 +20,6 @@ function Form() {
       plate: inputs.placa,
       color: inputs.cor
     }
-
-    console.log(body)
 
     fetch(url, {
       method: 'POST',
@@ -44,19 +32,28 @@ function Form() {
       if (!result.ok) {
         return result.json();
       }
-
       return result.json();
     })
     .then((res) => {
       if(res.error) {
         console.log('erooooooooor!');
       }
-
+      setCars([]);
       console.log(res.message);
     })
     .catch((error) => console.log('Erou: ', error));
-    
+
     e.preventDefault();
+  }
+
+  function handleChange(e) {
+    const {name, value} = e.target;
+    setInputs((prevState) => (
+      {
+        ...prevState,
+        [name]: value
+      }
+    ));
   }
 
   return (

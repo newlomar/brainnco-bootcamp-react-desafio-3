@@ -1,22 +1,6 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
-const url = 'http://localhost:3333/cars';
-
-function Table() {
-  const [cars, setCars] = useState([]);
-  
-  useEffect(() => {
-    async function getCars() {
-      const response = await fetch(url)
-      const json = await response.json()
-      setCars(json)
-      
-      // clean
-    }
-    
-    getCars();
-  }, []);
-
+function Table({ cars }) {
   return (
     <table>
       <thead>
@@ -33,7 +17,7 @@ function Table() {
           cars.length > 0 ? 
             cars.map((item) => {
               return(
-                <tr>
+                <tr key={item.plate}>
                   <td><img src={`${item.image}`} alt="car" /></td>
                   <td>{item.brandModel}</td>
                   <td>{item.year}</td>
