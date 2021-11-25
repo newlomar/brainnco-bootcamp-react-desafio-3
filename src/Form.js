@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Form({ setCars }) {
+function Form({ setCars, url }) {
 
   const [inputs, setInputs] = useState({
     image_url: '',
@@ -9,8 +9,6 @@ function Form({ setCars }) {
     placa: '',
     cor: ''
   });
-
-  const url = 'http://localhost:3333/cars';
 
   function handleSubmit(e) {
     const body = {
@@ -38,7 +36,16 @@ function Form({ setCars }) {
       if(res.error) {
         console.log('erooooooooor!');
       }
-      setCars([]);
+      
+      setCars((prevState) => {
+
+        return [
+          ...prevState,
+          body
+        ]
+
+      })
+
       console.log(res.message);
     })
     .catch((error) => console.log('Erou: ', error));

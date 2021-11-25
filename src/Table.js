@@ -1,6 +1,42 @@
 // import { useState, useEffect } from 'react';
 
-function Table({ cars }) {
+function Table({ cars, setCars, url }) {
+
+  // function deleteCar(plate) {
+  //   const body = {
+  //     plate: plate
+  //   }
+  //   fetch(url, {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify(body)
+  //   })
+  //   .then((result) => {
+  //     if (!result.ok) {
+  //       return result.json()
+  //     }
+  
+  //     return result.json()
+  //   })
+  //   .then((res) => {
+  
+  //     if(res.error) {
+  //       console.log('Erroooooooooooooooooooooooooooooooor!')
+  //     }
+  
+  //     console.log(res.message)
+  
+  //   })
+  //   .catch(error => console.log('Erro: ', error))
+  // }
+
+  // function handleDelete(e) {
+  //   deleteCar(e.target.plate);
+  //   setCars([]);
+  // } 
+
   return (
     <table>
       <thead>
@@ -22,7 +58,13 @@ function Table({ cars }) {
                   <td>{item.brandModel}</td>
                   <td>{item.year}</td>
                   <td>{item.plate}</td>
-                  <td>{item.color}</td>
+                  <td
+                    className="square"
+                    style= {{ backgroundColor: `${item.color}` }}
+                  >
+
+                  </td>
+                  <td><button plate={item.plate}>Excluir</button></td>
                 </tr>
               );
             }) :

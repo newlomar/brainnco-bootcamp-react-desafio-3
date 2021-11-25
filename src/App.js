@@ -12,26 +12,25 @@ function App() {
 
   useEffect(() => {
     async function getCars() {
+
       const response = await fetch(url)
       const json = await response.json()
-      setCars(json)
-      
-      // clean
+      setCars(json);
     }
     
     getCars();
 
     return () => {
-
+      console.log('clean app');
     }
 
-  }, [cars]);
+  }, []);
 
 
   return (
     <>
-      <Form setCars={setCars}/>
-      <Table cars={cars} />
+      <Form setCars={setCars} url={url}/>
+      <Table cars={cars} setCars={setCars} url={url}/>
     </>
   )
     
