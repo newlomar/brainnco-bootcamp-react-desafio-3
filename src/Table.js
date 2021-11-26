@@ -2,40 +2,41 @@
 
 function Table({ cars, setCars, url }) {
 
-  // function deleteCar(plate) {
-  //   const body = {
-  //     plate: plate
-  //   }
-  //   fetch(url, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //     },
-  //     body: JSON.stringify(body)
-  //   })
-  //   .then((result) => {
-  //     if (!result.ok) {
-  //       return result.json()
-  //     }
+  function deleteCar(plate) {
+    const body = {
+      plate: plate
+    }
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    })
+    .then((result) => {
+      if (!result.ok) {
+        return result.json()
+      }
   
-  //     return result.json()
-  //   })
-  //   .then((res) => {
+      return result.json()
+    })
+    .then((res) => {
   
-  //     if(res.error) {
-  //       console.log('Erroooooooooooooooooooooooooooooooor!')
-  //     }
+      if(res.error) {
+        console.log('Erroooooooooooooooooooooooooooooooor!')
+      }
   
-  //     console.log(res.message)
+      console.log(res.message)
   
-  //   })
-  //   .catch(error => console.log('Erro: ', error))
-  // }
+    })
+    .catch(error => console.log('Erro: ', error))
+  }
 
-  // function handleDelete(e) {
-  //   deleteCar(e.target.plate);
-  //   setCars([]);
-  // } 
+  function handleDelete(e) {
+    const plate = e.target.getAttribute('plate');
+    deleteCar(plate);
+    setCars(cars.filter((item) => item.plate !== plate));
+  } 
 
   return (
     <table>
@@ -62,9 +63,8 @@ function Table({ cars, setCars, url }) {
                     className="square"
                     style= {{ backgroundColor: `${item.color}` }}
                   >
-
                   </td>
-                  <td><button plate={item.plate}>Excluir</button></td>
+                  <td><button onClick={handleDelete} plate={item.plate}>Excluir</button></td>
                 </tr>
               );
             }) :
