@@ -2,7 +2,17 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Form from './Form';
 import Table from './Table';
+import { createGlobalStyle } from 'styled-components';
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+`;
 
 function App() {
 
