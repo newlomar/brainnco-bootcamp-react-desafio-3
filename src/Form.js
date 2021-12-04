@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
 function Form({ setCars, url }) {
 
@@ -65,24 +66,41 @@ function Form({ setCars, url }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="image_url">URL de Imagem do carro:</label>
-      <input type="text" name="image_url" id="image_url" onChange={handleChange}/>
+      <StyledLabel htmlFor="image_url">URL de Imagem do carro:</StyledLabel>
+      <StyledInput type="text" name="image_url" id="image_url" onChange={handleChange}/>
 
-      <label htmlFor="marca_modelo">Marca ou Modelo:</label>
-      <input type="text" name="marca_modelo" id="marca_modelo" onChange={handleChange}/>
+      <StyledLabel htmlFor="marca_modelo">Marca ou Modelo:</StyledLabel>
+      <StyledInput type="text" name="marca_modelo" id="marca_modelo" onChange={handleChange}/>
 
-      <label htmlFor="ano">Ano do carro:</label>
-      <input type="text" name="ano" id="ano" onChange={handleChange}/>
+      <StyledLabel htmlFor="ano">Ano do carro:</StyledLabel>
+      <StyledInput type="text" name="ano" id="ano" onChange={handleChange}/>
 
-      <label htmlFor="placa">Placa:</label>
-      <input type="text" name="placa" id="placa" onChange={handleChange}/>
+      <StyledLabel htmlFor="placa">Placa:</StyledLabel>
+      <StyledInput type="text" name="placa" id="placa" onChange={handleChange}/>
 
-      <label htmlFor="cor">Cor do carro:</label>
-      <input type="color" name="cor" id="cor" onChange={handleChange}/>
-      <button type="submit">Cadastrar</button>
+      <StyledLabel htmlFor="cor">Cor do carro:</StyledLabel>
+      <StyledInput type="color" name="cor" id="cor" onChange={handleChange}/>
+      <StyledButton type="submit">Cadastrar</StyledButton>
 
     </form>
   )
 }
+
+const StyledLabel = styled.label`
+  display: block;
+  font-weight: bolder;
+`;
+
+const StyledInput = styled.input`
+  display: block;
+  background: black;
+  color: white;
+  font-weight: bold;
+`;
+
+const StyledButton = styled.button`
+  margin-top: 1rem;
+  text-align: center;
+`;
 
 export default Form;

@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 function Table({ cars, setCars, url }) {
 
@@ -39,14 +39,14 @@ function Table({ cars, setCars, url }) {
   } 
 
   return (
-    <table>
+    <StyledTable>
       <thead>
         <tr>
-          <th>Imagem</th>
-          <th>Marca ou Modelo</th>
-          <th>Ano do Carro</th>
-          <th>Placa</th>
-          <th>Cor do Carro</th>
+          <StyledTh>Imagem</StyledTh>
+          <StyledTh>Marca ou Modelo</StyledTh>
+          <StyledTh>Ano do Carro</StyledTh>
+          <StyledTh>Placa</StyledTh>
+          <StyledTh>Cor do Carro</StyledTh>
         </tr>
       </thead>
       <tbody>
@@ -55,26 +55,54 @@ function Table({ cars, setCars, url }) {
             cars.map((item) => {
               return(
                 <tr key={item.plate}>
-                  <td><img src={`${item.image}`} alt="car" /></td>
-                  <td>{item.brandModel}</td>
-                  <td>{item.year}</td>
-                  <td>{item.plate}</td>
-                  <td
-                    className="square"
-                    style= {{ backgroundColor: `${item.color}` }}
-                  >
-                  </td>
-                  <td><button onClick={handleDelete} plate={item.plate}>Excluir</button></td>
+                  <StyledTd><StyledImage src={`${item.image}`} alt="car" /></StyledTd>
+                  <StyledTd>{item.brandModel}</StyledTd>
+                  <StyledTd>{item.year}</StyledTd>
+                  <StyledTd>{item.plate}</StyledTd>
+                  <StyledTd>
+                    <StyledDiv
+                      style= {{ backgroundColor: `${item.color}` }}>
+                    </StyledDiv>
+                  </StyledTd>
+                  <StyledTd><button onClick={handleDelete} plate={item.plate}>Excluir</button></StyledTd>
                 </tr>
               );
             }) :
             <tr>
-              <td>'Nenhum carro encontrado.'</td>
+              <StyledTdListaVazia>'Nenhum carro encontrado.'</StyledTdListaVazia>
             </tr>
         }
       </tbody>
-    </table>
+    </StyledTable>
   )
 }
+
+const StyledTable = styled.table` 
+  border: 1px solid black;
+  margin-top: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+`;
+const StyledTh = styled.th` 
+  border: 1px solid black;
+`;
+const StyledTd = styled.td` 
+  border: 1px solid black;
+  text-align: center;
+`;
+
+const StyledImage = styled.img`
+  width: 100px;
+  height: 100px;
+`;
+
+const StyledTdListaVazia = styled.td`
+  font-size: 1.5rem;
+`;
+
+const StyledDiv = styled.div`
+  width: 100px;
+  height: 100px;
+`;
 
 export default Table;
